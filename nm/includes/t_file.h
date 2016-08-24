@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:36:21 by marene            #+#    #+#             */
-/*   Updated: 2016/08/22 15:26:24 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/23 15:09:52 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef struct		s_file
 {
-	char			*content;
+	void		*content;
 	size_t			size;
 	char			*name;
 	struct s_file	*next;

@@ -3,6 +3,8 @@
 
 # include <stdlib.h>
 # include <mach-o/loader.h>
+# include <mach-o/nlist.h>
+# include <mach-o/stab.h>
 # include "t_file.h"
 # include "libft.h"
 
