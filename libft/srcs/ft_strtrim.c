@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 10:17:13 by marene            #+#    #+#             */
-/*   Updated: 2016/08/17 18:16:25 by marene           ###   ########.fr       */
+/*   Updated: 2016/04/29 14:25:55 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ char	*ft_strtrim(char const *s)
 		start++;
 	while (end > 0 && ft_strchr(BLANK_CHARS, s[end]) != NULL)
 		end--;
-	str = (end >= start && !ft_strchr(BLANK_CHARS, s[end]))
-		? ft_strsub(s, start, end - start + 1) : NULL;
+	str = (end > start) ? ft_strsub(s, start, end - start + 1) : NULL;
 	if (str != NULL)
 		str[end - start + 1] = '\0';
 	return (str);

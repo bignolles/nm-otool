@@ -6,20 +6,13 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/01 18:32:52 by marene            #+#    #+#             */
-/*   Updated: 2015/05/06 17:34:23 by marene           ###   ########.fr       */
+/*   Updated: 2016/05/17 14:24:24 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include <stdlib.h>
 #include <libft.h>
-
-static int		ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
 
 static size_t	ft_sizealloc(int n, int *pow)
 {

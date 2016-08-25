@@ -6,7 +6,7 @@
 #    By: marene <marene@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 10:20:28 by marene            #+#    #+#              #
-#    Updated: 2015/05/07 12:26:29 by marene           ###   ########.fr        #
+#    Updated: 2016/05/17 14:26:04 by marene           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,11 @@ SRC =		ft_atoi.c				ft_bzero.c\
 			error.c					ft_array_free.c\
 			ft_array_len.c			ft_iswhite.c\
 			ft_epurstr.c			get_next_line.c\
-			ft_put_color.c			ft_ws_split.c
+			ft_put_color.c			ft_ws_split.c\
+			ft_putaddr.c			ft_putchar_hex.c\
+			ft_putchar_fd.c			ft_abs.c\
+			ft_putnbr_recursive.c	ft_putstr_dump.c\
+
 OBJ = $(SRC:.c=.o)
 SRC_DIR = ./srcs/
 OBJ_DIR = ./obj/

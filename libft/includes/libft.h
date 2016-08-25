@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/20 22:33:09 by marene            #+#    #+#             */
-/*   Updated: 2015/05/07 12:25:54 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/25 16:05:21 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,14 @@ int				ft_iswhite(char c);
 int				ft_toupper(int n);
 int				ft_tolower(int n);
 void			ft_usage(char *exname);
+void			putaddr32(uint32_t ptr, int fd);
+void			putaddr64(uint64_t ptr, int fd);
+void			ft_putnbr_recursive(int32_t nb, int mult, int fd);
+int				get_mult(int32_t nb);
+void			ft_putchar_hex(unsigned char *c);
+void			ft_putint_hex(unsigned int *c);
+void			ft_putstr_dump(char *str, int len);
+int				ft_abs(int nb);
 
 /*
 ** |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
