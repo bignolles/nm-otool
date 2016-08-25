@@ -15,7 +15,9 @@ SRCS =					env_next_file.c\
 						init_env.c\
 						load_file.c\
 						main.c\
-						t_file.c
+						t_file.c\
+						t_section.c\
+						t_symbol.c
 OBJ =					$(SRCS:.c=.o)
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
