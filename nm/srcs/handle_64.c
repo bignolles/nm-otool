@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/08/25 16:59:42 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/30 14:10:36 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable,
 	{
 		i = 0;
 		j = 0;
+		file->symbol_nb = nsyms;
 		while (i < nsyms)
 		{
 			if (symtable[i].n_un.n_strx > 1)
@@ -154,6 +155,7 @@ int				handle_64(t_file *file)
 		++i;
 	}
 	add_section(file, ncmds, tot, file->content + sizeof(struct mach_header_64));
+	sort_symbols(file->symbols, symsort_ascii);
 	foo_printsymbols(file->symbols, file->sections);
 	return (NM_OK);
 }

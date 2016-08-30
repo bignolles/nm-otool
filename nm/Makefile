@@ -15,6 +15,8 @@ SRCS =					env_next_file.c\
 						init_env.c\
 						load_file.c\
 						main.c\
+						sort.c\
+						symsort.c\
 						t_file.c\
 						t_section.c\
 						t_symbol.c

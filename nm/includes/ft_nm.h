@@ -25,5 +25,6 @@ t_env				*init_env(void);
 int					env_next_file(t_env *env);
 int					load_file(char *file_name, t_file **froot);
 int					get_magic(t_env *env);
+int					symsort_ascii(t_symbol *s1, t_symbol *s2);
 
 #endif
