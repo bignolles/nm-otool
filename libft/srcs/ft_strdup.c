@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:48:00 by marene            #+#    #+#             */
-/*   Updated: 2014/10/14 12:36:38 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/30 16:29:53 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ char	*ft_strdup(const char *s1)
 	char	*copy;
 
 	i = 0;
-	len = ft_strlen(s1) + 1;
-	copy = malloc(len * sizeof(char));
-	while (i < len)
+	copy = NULL;
+	if (s1 != NULL)
 	{
-		copy[i] = s1[i];
-		i++;
+		len = ft_strlen(s1) + 1;
+		copy = malloc(len * sizeof(char));
+		while (i < len)
+		{
+			copy[i] = s1[i];
+			i++;
+		}
 	}
 	return (copy);
 }
