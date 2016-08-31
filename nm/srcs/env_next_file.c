@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:19:07 by marene            #+#    #+#             */
-/*   Updated: 2016/08/23 16:59:55 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/30 15:32:06 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int				env_next_file(t_env *env)
 	{
 		if (get_magic(env) == NM_OK)
 			env->handler(env->froot);
-		tmp = env->froot;
-		env->froot = env->froot->next;
-		t_file_destruct(tmp);
+		if (env->froot != NULL)
+		{
+			tmp = env->froot;
+			env->froot = env->froot->next;
+			t_file_destruct(tmp);
+		}
 		return (NM_OK);
 	}
 	return (NM_NOK);

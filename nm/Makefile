@@ -6,7 +6,7 @@ OBJ_DIR =				./obj/
 LIBFT_DIR =				../libft
 LIBFT_INCLUDES =		$(LIBFT_DIR)/includes/
 LIBFT =					$(LIBFT_DIR)/libft.a
-CFLAGS =				-Wall -Wextra -Werror -I$(INCLUDES_DIR) -I$(LIBFT_INCLUDES) -c -o
+CFLAGS =				-Wall -Wextra -Werror -I$(INCLUDES_DIR) -I$(LIBFT_INCLUDES) -c -g -o
 LDFLAGS =				-L$(LIBFT_DIR) -lft -o
 SRCS =					env_next_file.c\
 						get_magic.c\

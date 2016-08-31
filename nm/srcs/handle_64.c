@@ -6,12 +6,14 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/08/30 14:10:36 by marene           ###   ########.fr       */
+/*   Updated: 2016/08/31 17:11:04 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdio.h>
 #include "ft_nm.h"
+
+int			g_useless_global = 0;
 
 static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable, void *strtable)
 {
@@ -25,7 +27,7 @@ static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable,
 		file->symbol_nb = nsyms;
 		while (i < nsyms)
 		{
-			if (symtable[i].n_un.n_strx > 1)
+			if (symtable[i].n_un.n_strx > 0)
 			{
 				file->symbols[j] = t_symbol_construct_64(symtable[i], strtable);
 				++j;
@@ -100,6 +102,7 @@ static void		foo_printsymbols(t_symbol **symbols, t_section **sections)
 	int		i;
 
 	i = 0;
+	(void)sections;
 	while (symbols[i] != NULL)
 	{
 		if (symbols[i]->type == N_UNDF)
@@ -113,7 +116,7 @@ static void		foo_printsymbols(t_symbol **symbols, t_section **sections)
 			ft_putstr(" ");
 		}
 		foo_print_symtype(symbols[i], sections);
-		ft_putstr(symbols[i]->name);
+		ft_putstr((symbols[i]->name) ? symbols[i]->name : "NULL");
 		ft_putchar('\n');
 		++i;
 	}
