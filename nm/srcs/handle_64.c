@@ -6,14 +6,14 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/08/31 17:11:04 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/01 12:27:58 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdio.h>
 #include "ft_nm.h"
 
-int			g_useless_global = 0;
+extern t_env	g_foo;
 
 static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable, void *strtable)
 {
@@ -105,19 +105,22 @@ static void		foo_printsymbols(t_symbol **symbols, t_section **sections)
 	(void)sections;
 	while (symbols[i] != NULL)
 	{
-		if (symbols[i]->type == N_UNDF)
+		if (symbols[i]->name != NULL && !symbols[i]->stab)
 		{
-			ft_putstr("                ");
-			ft_putstr(" ");
+			if (symbols[i]->type == N_UNDF)
+			{
+				ft_putstr("                ");
+				ft_putstr(" ");
+			}
+			else
+			{
+				putaddr64(symbols[i]->n_value, 1);
+				ft_putstr(" ");
+			}
+			foo_print_symtype(symbols[i], sections);
+			ft_putstr((symbols[i]->name) ? symbols[i]->name : "NULL");
+			ft_putchar('\n');
 		}
-		else
-		{
-			putaddr64(symbols[i]->n_value, 1);
-			ft_putstr(" ");
-		}
-		foo_print_symtype(symbols[i], sections);
-		ft_putstr((symbols[i]->name) ? symbols[i]->name : "NULL");
-		ft_putchar('\n');
 		++i;
 	}
 }

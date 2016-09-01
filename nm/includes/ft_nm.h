@@ -19,6 +19,8 @@ typedef struct		s_env
 	file_handler	handler;
 }					t_env;
 
+t_env					g_foo;
+
 int					handle_32(t_file *file);
 int					handle_64(t_file *file);
 t_env				*init_env(void);
