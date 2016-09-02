@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:36:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 15:27:31 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 15:55:46 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define T_FILE_OK	0
 # define T_FILE_NOK	1
 
+# define NM_SYM32	0x01
+# define NM_SYM64	0x10
+
 typedef struct		s_section
 {
 	char			*sectname;
@@ -41,6 +44,7 @@ typedef struct		s_symbol
 	uint8_t			type;
 	int32_t			sectnb;
 	uint64_t		n_value;
+	uint8_t			byte;
 }					t_symbol;
 
 typedef struct		s_file

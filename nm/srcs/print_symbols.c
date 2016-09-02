@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 14:38:33 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:39:38 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 16:06:24 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,38 @@ static void		print_symtype(t_symbol *symbol, t_section **sections)
 	ft_putchar(' ');
 }
 
+static void		print_addr(t_symbol *sym)
+{
+	static char		blank64[] = "                ";
+	static char		blank32[] = "        ";
+
+	if (sym->type == N_UNDF)
+	{
+		if (sym->byte == NM_SYM32)
+			ft_putstr(blank32);
+		else if (sym->byte == NM_SYM64)
+			ft_putstr(blank64);
+	}
+	else
+	{
+		if (sym->byte == NM_SYM32)
+			putaddr32(sym->n_value, 1);
+		else if (sym->byte == NM_SYM64)
+			putaddr64(sym->n_value, 1);
+	}
+	ft_putchar(' ');
+}
+
 void			print_symbols(t_symbol **symbols, t_section **sections)
 {
 	int		i;
 
 	i = 0;
-	(void)sections;
 	while (symbols[i] != NULL)
 	{
 		if (symbols[i]->name != NULL && !symbols[i]->stab)
 		{
-			if (symbols[i]->type == N_UNDF)
-			{
-				ft_putstr("                ");
-				ft_putstr(" ");
-			}
-			else
-			{
-				putaddr64(symbols[i]->n_value, 1);
-				ft_putstr(" ");
-			}
+			print_addr(symbols[i]);
 			print_symtype(symbols[i], sections);
 			ft_putstr((symbols[i]->name) ? symbols[i]->name : "NULL");
 			ft_putchar('\n');
