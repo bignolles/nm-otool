@@ -6,24 +6,34 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 13:07:20 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 18:51:45 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 13:27:28 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int		main(int argc, char **argv)
+static void		init(t_env *env)
+{
+	//munmap previous file
+	env->file = NULL;
+	env->text= NULL;
+	env->addr64 = 0;
+	env->addr32 = 0;
+}
+
+int				main(int argc, char **argv)
 {
 	int			i;
-	void		*text;
+	t_env		env;
 
 	i = 1;
 	while (i < argc)
 	{
-		if ((text = load_file(argv[i])) == NULL)
+		init(&env);
+		if ((load_file(argv[i], &env)) == OTOOL_NOK)
 			return (1);
 		else
-			print_text(text);
+			print_text(&env);
 		++i;
 	}
 }

@@ -13,7 +13,8 @@ SRCS =					get_handler.c\
 						handle_64.c\
 						handle_32.c\
 						load_file.c\
-						main.c
+						main.c\
+						print_text.c
 OBJ =					$(SRCS:.c=.o)
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)

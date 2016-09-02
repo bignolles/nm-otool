@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 13:08:05 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 18:52:01 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 13:33:30 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,25 @@
 # define O_SEGTEXT				"__TEXT"
 # define O_SECTEXT				"__text"
 
-typedef void					*(*handler)(void *file);
+# define DUMP_INCREMENT			0x10
 
-void							*load_file(char *file_name);
-void							*get_text_section(void *file);
+typedef struct					s_env
+{
+	void		*file;
+	void		*text;
+	char		*filename;
+	uint64_t	addr64;
+	uint64_t	addr32;
+	uint64_t	size;
+}								t_env;
+
+typedef int						(*handler)(t_env *env);
+
+int								load_file(char *file_name, t_env *env);
+int								get_text_section(t_env *env);
 handler							get_handler(void *file);
-void							*handle_64(void *file);
-void							*handle_32(void *file);
-void							print_text(void *text);
+int								handle_64(t_env *env);
+int								handle_32(t_env *env);
+void							print_text(t_env *env);
 
 #endif

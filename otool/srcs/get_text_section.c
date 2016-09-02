@@ -6,19 +6,19 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 16:03:57 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 16:15:33 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 13:05:33 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-void				*get_text_section(void *file)
+int				get_text_section(t_env *env)
 {
 	handler		handle;
 
-	handle = get_handler(file);
+	handle = get_handler(env->file);
 	if (handle == NULL)
-		return (NULL);
+		return (OTOOL_NOK);
 	else
-		return (handle(file));
+		return (handle(env));
 }

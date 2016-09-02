@@ -6,14 +6,14 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 17:50:54 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 17:51:20 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 13:06:00 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-void					*handle_32(void *file)
+int					handle_32(t_env *env)
 {
-	(void)file;
-	return (NULL);
+	(void)env;
+	return (OTOOL_NOK);
 }

@@ -6,13 +6,13 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 16:16:03 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 18:34:30 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 13:35:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-void					*handle_64(void *file)
+int						handle_64(t_env *env)
 {
 	struct mach_header_64		*header;
 	struct load_command			*lc;
@@ -23,9 +23,9 @@ void					*handle_64(void *file)
 	uint32_t					i;
 	uint32_t					j;
 
-	header = (struct mach_header_64*)file;
+	header = (struct mach_header_64*)env->file;
 	ncmds = header->ncmds;
-	data = file + sizeof(*header);
+	data = env->file + sizeof(*header);
 	i = 0;
 	while (i < ncmds)
 	{
@@ -39,8 +39,10 @@ void					*handle_64(void *file)
 			{
 				if (ft_strequ(sec->segname, O_SEGTEXT) && ft_strequ(sec->sectname, O_SECTEXT))
 				{
-					ft_putendl("found __TEXT, __text");
-					return (file + sec->offset);
+					env->text = env->file + sec->offset;
+					env->addr64 = sec->addr;
+					env->size = sec->size;
+					return (OTOOL_OK);
 				}
 				++j;
 				++sec;
@@ -50,5 +52,5 @@ void					*handle_64(void *file)
 		++i;
 	}
 	ft_putendl("didn't find nothing boss");
-	return (NULL);
+	return (OTOOL_NOK);
 }
