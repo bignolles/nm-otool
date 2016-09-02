@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:38:21 by marene            #+#    #+#             */
-/*   Updated: 2016/08/22 15:27:49 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:31:26 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_file				*t_file_create(char *file_name, int fd)
 		if ((ret = malloc(sizeof(t_file))) != NULL)
 		{
 			ret->next = NULL;
-			if ((ret->content = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+			if ((ret->content = mmap(NULL, buf.st_size, PROT_READ,
+							MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 			{
 				free(ret);
 				ret = NULL;

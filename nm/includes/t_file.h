@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:36:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 12:41:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 15:27:31 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int					t_file_add(t_file **froot, t_file *file);
 void				t_file_destruct(t_file *file);
 t_section			*t_section_construct_64(struct section_64 *sect);
 t_section			*t_section_construct_32(struct section *sect);
-t_symbol			*t_symbol_construct_64(struct nlist_64 symtable, void *strtable);
-t_symbol			*t_symbol_construct_32(struct nlist symtable, void *strtable);
+t_symbol			*t_symbol_construct_64(struct nlist_64 symtable,
+						void *strtable);
+t_symbol			*t_symbol_construct_32(struct nlist symtable,
+						void *strtable);
 int					sort_symbols(t_symbol **symbols, t_symsort sort);
 
 #endif

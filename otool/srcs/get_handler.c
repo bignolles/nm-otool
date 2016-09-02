@@ -6,13 +6,13 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 16:09:35 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 17:51:49 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:28:27 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-handler				get_handler(void *file)
+t_handler				get_handler(void *file)
 {
 	uint32_t	magic;
 

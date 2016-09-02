@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 13:07:20 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 13:27:28 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:17:21 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void		init(t_env *env)
 {
-	//munmap previous file
+	if (env->file != NULL)
+		munmap(env, env->filesize);
 	env->file = NULL;
-	env->text= NULL;
+	env->text = NULL;
 	env->addr64 = 0;
 	env->addr32 = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 13:08:05 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 13:33:30 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:28:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ typedef struct					s_env
 	void		*file;
 	void		*text;
 	char		*filename;
+	uint32_t	filesize;
 	uint64_t	addr64;
 	uint64_t	addr32;
 	uint64_t	size;
 }								t_env;
 
-typedef int						(*handler)(t_env *env);
+typedef int						(*t_handler)(t_env *env);
 
 int								load_file(char *file_name, t_env *env);
 int								get_text_section(t_env *env);
-handler							get_handler(void *file);
+t_handler						get_handler(void *file);
 int								handle_64(t_env *env);
 int								handle_32(t_env *env);
 void							print_text(t_env *env);

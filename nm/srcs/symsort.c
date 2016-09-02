@@ -6,14 +6,11 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/29 15:20:39 by marene            #+#    #+#             */
-/*   Updated: 2016/08/31 16:52:05 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:31:08 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
- # include <stdio.h>
-#include"ft_nm.h"
-
+#include "ft_nm.h"
 
 int					sort_symbols(t_symbol **symbols, t_symsort sort)
 {

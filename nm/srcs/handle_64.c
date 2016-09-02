@@ -6,16 +6,14 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 12:27:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 15:23:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdio.h>
 #include "ft_nm.h"
 
-extern t_env	g_foo;
-
-static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable, void *strtable)
+static int		add_symbols(t_file *file, uint32_t nsyms,
+		struct nlist_64 *symtable, void *strtable)
 {
 	uint32_t				i;
 	uint32_t				j;
@@ -40,14 +38,28 @@ static int		add_symbols(t_file *file, uint32_t nsyms, struct nlist_64 *symtable,
 	return (NM_NOK);
 }
 
-static int		add_section(t_file *file, uint32_t ncmds, uint32_t nsect, void *data)
+static void		fetch_sections(t_file *file, void *data,
+		struct segment_command_64 *seg, uint32_t *sect_count)
+{
+	uint32_t					j;
+	struct section_64			*sect;
+
+	sect = data + sizeof(struct segment_command_64);
+	j = 0;
+	while (j < seg->nsects)
+	{
+		file->sections[(*sect_count)++] = t_section_construct_64(sect);
+		sect++;
+		++j;
+	}
+}
+
+static int		add_section(t_file *file, uint32_t ncmds, uint32_t nsect,
+		void *data)
 {
 	uint32_t					i;
-	uint32_t					j;
-	uint32_t					sect_count;;
+	uint32_t					sect_count;
 	struct load_command			*lc;
-	struct segment_command_64	*seg;
-	struct section_64			*sect;
 
 	if ((file->sections = malloc(sizeof(t_section*) * (nsect + 1))) != NULL)
 	{
@@ -59,15 +71,8 @@ static int		add_section(t_file *file, uint32_t ncmds, uint32_t nsect, void *data
 			lc = (struct load_command*)data;
 			if (lc->cmd == LC_SEGMENT_64)
 			{
-				seg = (struct segment_command_64*)data;
-				sect = data + sizeof(struct segment_command_64);
-				j = 0;
-				while (j < seg->nsects)
-				{
-					file->sections[sect_count++] = t_section_construct_64(sect);
-					sect++;
-					++j;
-				}
+				fetch_sections(file, data,
+						(struct segment_command_64 *)lc, &sect_count);
 			}
 			++i;
 			data += lc->cmdsize;
@@ -77,91 +82,48 @@ static int		add_section(t_file *file, uint32_t ncmds, uint32_t nsect, void *data
 	return (NM_NOK);
 }
 
-static void		foo_print_symtype(t_symbol *symbol, t_section **sections)
+static void		handle_segment(t_file *file, void *data,
+		struct load_command *lc, uint32_t *tot)
 {
-	char		type;
+	struct segment_command_64	*seg;
+	struct symtab_command		*sym;
 
-	if (symbol->type == N_UNDF)
-		type = 'u';
-	else if (symbol->type == N_ABS)
-		type = 'a';
-	else if (symbol->type == N_SECT)
-		type = sections[symbol->sectnb]->secsym;
-	else if (symbol->type == N_INDR)
-		type = 'i';
-	if (symbol->ext)
-		type = type + 'A' - 'a';
-	if (symbol->stab)
-		type = '-';
-	ft_putchar(type);
-	ft_putchar(' ');
-}
-
-static void		foo_printsymbols(t_symbol **symbols, t_section **sections)
-{
-	int		i;
-
-	i = 0;
-	(void)sections;
-	while (symbols[i] != NULL)
+	if (lc->cmd == LC_SYMTAB)
 	{
-		if (symbols[i]->name != NULL && !symbols[i]->stab)
-		{
-			if (symbols[i]->type == N_UNDF)
-			{
-				ft_putstr("                ");
-				ft_putstr(" ");
-			}
-			else
-			{
-				putaddr64(symbols[i]->n_value, 1);
-				ft_putstr(" ");
-			}
-			foo_print_symtype(symbols[i], sections);
-			ft_putstr((symbols[i]->name) ? symbols[i]->name : "NULL");
-			ft_putchar('\n');
-		}
-		++i;
+		sym = (struct symtab_command*)data;
+		add_symbols(file, sym->nsyms, file->content + sym->symoff,
+				file->content + sym->stroff);
+	}
+	else if (lc->cmd == LC_SEGMENT_64)
+	{
+		seg = (struct segment_command_64*)data;
+		*tot += seg->nsects;
 	}
 }
 
 int				handle_64(t_file *file)
 {
-	struct mach_header_64		header;
-	struct load_command			lc;
-	struct symtab_command		*sym;
-	uint32_t					ncmds;
+	struct mach_header_64		*header;
+	struct load_command			*lc;
 	uint32_t					i;
 	void						*data;
-	struct segment_command_64	*seg;
 	uint32_t					tot;
 
 	tot = 0;
 	data = file->content;
-	header = *(struct mach_header_64*)data;
-	ncmds = header.ncmds;
+	header = (struct mach_header_64*)data;
 	data += sizeof(struct mach_header_64);
 	i = 0;
-	while (i < ncmds)
+	while (i < header->ncmds)
 	{
-		lc = *(struct load_command*)data;
-		if (lc.cmd == LC_SYMTAB)
-		{
-			sym = (struct symtab_command*)data;
-			add_symbols(file, sym->nsyms, file->content + sym->symoff, file->content + sym->stroff);
-		}
-		else if (lc.cmd == LC_SEGMENT_64)
-		{
-			seg = (struct segment_command_64*)data;
-			tot += seg->nsects;
-		}
-		else if (lc.cmd == LC_SEGMENT)
-			printf("32b, WTF?\n");
-		data += lc.cmdsize;
+		lc = (struct load_command*)data;
+		handle_segment(file, data, lc, &tot);
+		data += lc->cmdsize;
 		++i;
 	}
-	add_section(file, ncmds, tot, file->content + sizeof(struct mach_header_64));
+	add_section(file, header->ncmds, tot, file->content +
+			sizeof(struct mach_header_64));
 	sort_symbols(file->symbols, symsort_ascii);
-	foo_printsymbols(file->symbols, file->sections);
+	print_symbols(file->symbols, file->sections);
 	return (NM_OK);
 }

@@ -5,15 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/01 17:50:54 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 13:06:00 by marene           ###   ########.fr       */
+/*   Created: 2016/09/01 16:16:03 by marene            #+#    #+#             */
+/*   Updated: 2016/09/02 14:24:29 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int					handle_32(t_env *env)
+static int				fetch_section(t_env *env, void *data,
+		struct segment_command *seg)
 {
-	(void)env;
+	struct section				*sec;
+	uint32_t					j;
+
+	sec = data + sizeof(struct segment_command);
+	j = 0;
+	while (j < seg->nsects)
+	{
+		if (ft_strequ(sec->segname, O_SEGTEXT)
+				&& ft_strequ(sec->sectname, O_SECTEXT))
+		{
+			env->text = env->file + sec->offset;
+			env->addr64 = sec->addr;
+			env->size = sec->size;
+			return (OTOOL_OK);
+		}
+		++j;
+		++sec;
+	}
+	return (OTOOL_NOK);
+}
+
+int						handle_32(t_env *env)
+{
+	struct mach_header			*header;
+	struct load_command			*lc;
+	void						*data;
+	uint32_t					ncmds;
+	uint32_t					i;
+
+	header = (struct mach_header*)env->file;
+	ncmds = header->ncmds;
+	data = env->file + sizeof(*header);
+	i = 0;
+	while (i < ncmds)
+	{
+		lc = (struct load_command*)data;
+		if (lc->cmd == LC_SEGMENT)
+		{
+			if (fetch_section(env, data,
+						(struct segment_command*)lc) == OTOOL_OK)
+				return (OTOOL_OK);
+		}
+		data += lc->cmdsize;
+		++i;
+	}
+	ft_putendl("didn't find nothing boss");
 	return (OTOOL_NOK);
 }

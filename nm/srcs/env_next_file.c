@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:19:07 by marene            #+#    #+#             */
-/*   Updated: 2016/08/30 15:32:06 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:30:03 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int				env_next_file(t_env *env)
 {
 	t_file		*tmp;
 
-	
 	if (env->froot)
 	{
 		if (get_magic(env) == NM_OK)

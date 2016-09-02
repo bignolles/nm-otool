@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:15:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/01 12:42:14 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:32:43 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_symbol		*t_symbol_construct_32(struct nlist symtable, void *strtable)
 	{
 		sym_name = strtable + symtable.n_un.n_strx;
 		ret->name = (ft_strlen(sym_name) > 0) ?
-						ft_strdup(sym_name) : 
+						ft_strdup(sym_name) :
 						NULL;
 		ret->stab = (symtable.n_type & N_STAB);
 		ret->pext = (symtable.n_type & N_PEXT);
@@ -46,7 +46,7 @@ t_symbol		*t_symbol_construct_64(struct nlist_64 symtable, void *strtable)
 	{
 		sym_name = strtable + symtable.n_un.n_strx;
 		ret->name = (ft_strlen(sym_name) > 0) ?
-						ft_strdup(sym_name) : 
+						ft_strdup(sym_name) :
 						NULL;
 		ret->stab = (symtable.n_type & N_STAB);
 		ret->pext = (symtable.n_type & N_PEXT);
