@@ -6,20 +6,20 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 13:15:19 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:32:04 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/06 16:10:53 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_file.h"
 
-t_section				*t_section_construct_32(struct section *sect)
+t_section				*t_section_construct_32(struct section sect)
 {
 	t_section		*ret;
 
 	if ((ret = malloc(sizeof(t_section))) != NULL)
 	{
-		ret->sectname = ft_strdup(sect->sectname);
-		ret->segname = ft_strdup(sect->segname);
+		ret->sectname = ft_strdup(sect.sectname);
+		ret->segname = ft_strdup(sect.segname);
 		if (ft_strequ(ret->segname, "__TEXT")
 				&& ft_strequ(ret->sectname, "__text"))
 			ret->secsym = 't';

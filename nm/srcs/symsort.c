@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/29 15:20:39 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:31:08 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:41:06 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int					sort_symbols(t_symbol **symbols, t_symsort sort)
 	uint32_t	min_ptr;
 
 	i = 0;
-	while (symbols[i])
+	while (symbols && symbols[i])
 	{
 		j = i;
 		min_ptr = j;

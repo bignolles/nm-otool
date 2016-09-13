@@ -9,9 +9,11 @@ LIBFT =					$(LIBFT_DIR)/libft.a
 CFLAGS =				-Wall -Wextra -Werror -I$(INCLUDES_DIR) -I$(LIBFT_INCLUDES) -c -g -o
 LDFLAGS =				-L$(LIBFT_DIR) -lft -o
 SRCS =					env_next_file.c\
+						fat_reverse.c\
 						get_magic.c\
 						handle_32.c\
 						handle_64.c\
+						handle_fat.c\
 						init_env.c\
 						load_file.c\
 						main.c\

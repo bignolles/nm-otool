@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 15:25:49 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/09 12:11:23 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		fetch_sections(t_file *file, void *data,
 	j = 0;
 	while (j < seg->nsects)
 	{
-		file->sections[(*sect_count)++] = t_section_construct_32(sect);
+		file->sections[(*sect_count)++] = t_section_construct_32(*sect);
 		sect++;
 		++j;
 	}

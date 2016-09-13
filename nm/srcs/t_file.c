@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:38:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:31:26 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:41:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_file				*t_file_create(char *file_name, int fd)
 			{
 				ret->name = ft_strdup(file_name);
 				ret->size = buf.st_size;
+				ret->symbols = NULL;
+				ret->sections = NULL;
 			}
 		}
 	}
