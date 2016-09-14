@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:36:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/08 15:19:36 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/14 14:09:51 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_symbol
 typedef struct		s_file
 {
 	void			*content;
+	void			*start;
 	size_t			size;
 	char			*name;
 	t_section		**sections;

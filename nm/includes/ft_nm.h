@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 15:26:22 by marene            #+#    #+#             */
-/*   Updated: 2016/09/09 14:16:03 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/13 17:01:28 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_env					g_foo;
 int						handle_32(t_file *file);
 int						handle_64(t_file *file);
 int						handle_fat(t_file *file);
+int						handle_ar(t_file *file);
 t_env					*init_env(void);
 int						env_next_file(t_env *env);
 int						load_file(char *file_name, t_file **froot);

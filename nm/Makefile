@@ -13,6 +13,7 @@ SRCS =					env_next_file.c\
 						get_magic.c\
 						handle_32.c\
 						handle_64.c\
+						handle_ar.c\
 						handle_fat.c\
 						init_env.c\
 						load_file.c\
