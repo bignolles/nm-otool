@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 14:38:33 by marene            #+#    #+#             */
-/*   Updated: 2016/09/09 12:07:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/16 15:06:32 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ static void		print_symtype(t_symbol *symbol, t_section **sections)
 		type = '-';
 	ft_putchar(type);
 	ft_putchar(' ');
+	ft_putstr("{ ");
+	if (symbol->sectnb < 0)
+		ft_putstr("no_sect");
+	else
+		ft_putstr(sections[symbol->sectnb]->sectname);
+	ft_putstr("} ");
 }
 
 static void		print_addr(t_symbol *sym)

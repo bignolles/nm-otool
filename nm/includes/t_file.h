@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:36:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/14 14:09:51 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/16 13:21:25 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct		s_symbol
 	uint8_t			ext;
 	uint8_t			type;
 	int32_t			sectnb;
-	uint32_t		n_value32; //test
-	uint64_t		n_value64; //test
+//	uint32_t		n_value32; //test
+//	uint64_t		n_value64; //test
 	uint64_t		n_value;
 	uint8_t			byte;
 }					t_symbol;
@@ -72,6 +72,8 @@ t_symbol			*t_symbol_construct_64(struct nlist_64 symtable,
 						void *strtable);
 t_symbol			*t_symbol_construct_32(struct nlist symtable,
 						void *strtable);
+void				t_symbol_destruct(t_symbol ***symbols);
 int					sort_symbols(t_symbol **symbols, t_symsort sort);
+void				t_symbol_destruct(t_symbol ***symbols);
 
 #endif

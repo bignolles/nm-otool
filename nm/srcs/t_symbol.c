@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:15:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/08 15:19:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/16 13:22:03 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_symbol		*t_symbol_construct_32(struct nlist symtable, void *strtable)
 		ret->type = (symtable.n_type & N_TYPE);
 		ret->sectnb = symtable.n_sect - 1;
 		ret->n_value = symtable.n_value;
-		ret->n_value32 = symtable.n_value;
 		ret->byte = NM_SYM32;
 	}
 	else
@@ -61,4 +60,19 @@ t_symbol		*t_symbol_construct_64(struct nlist_64 symtable, void *strtable)
 	else
 		ft_putendl("Adding symbol failed");
 	return (ret);
+}
+
+void		t_symbol_destruct(t_symbol ***symbols)
+{
+	int			i;
+
+	i = 0;
+	while ((*symbols)[i])
+	{
+		free(((*symbols)[i])->name);
+		free((*symbols)[i]);
+		++i;
+	}
+	free(*symbols);
+	*symbols = NULL;
 }

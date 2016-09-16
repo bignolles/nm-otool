@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 14:52:49 by marene            #+#    #+#             */
-/*   Updated: 2016/09/14 15:36:27 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/16 14:45:44 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int				get_magic(t_env *env)
 	unsigned int		magic_nb;
 	void				*data = env->froot->content;
 	struct ar_hdr		ar_h;
-	//int					off;
-	//void				*tmp;
-//	struct ranlib		ranl;
 
 	magic_nb = *(int *)env->froot->content;
 	if (magic_nb == MH_MAGIC)
@@ -39,13 +36,6 @@ int				get_magic(t_env *env)
 		ar_h = *(struct ar_hdr*)(env->froot->content + SARMAG);
 		data = env->froot->content + SARMAG + sizeof(struct ar_hdr);
 		data += ft_atoi(ar_h.ar_size);
-		/*
-		ar_h = *(struct ar_hdr*)(data);
-		off = get_size(ar_h.ar_name);
-		tmp = (data + sizeof(ar_h) + off);
-		if (*(unsigned int*)(tmp) == MH_MAGIC_64)
-			printf("IT FUCKING WORKED!\n");
-			*/
 		env->froot->content = data;
 		env->handler = handle_ar;
 	}
