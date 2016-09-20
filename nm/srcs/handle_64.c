@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/20 15:35:59 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:55:02 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int		add_symbols(t_file *file, uint32_t nsyms,
 
 	offset = 0;
 	file->symbols = malloc(sizeof(t_symbol*) * (nsyms + 1));
-	if (file->symbols != NULL && !(i = 0))
+	if (file->symbols != NULL && (i = 0) == 0)
 	{
-		j = 0;
+		j = -1;
 		file->symbol_nb = nsyms;
 		while (i < nsyms)
 		{
