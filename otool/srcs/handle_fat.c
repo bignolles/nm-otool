@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/20 15:25:10 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:27:36 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		call_handle(t_env *env)
 {
 	unsigned int		magic_nb;
-	void				*data = env->file;
+	void				*data;
 	struct ar_hdr		ar_h;
 
 	magic_nb = *(unsigned int*)(env->file);
