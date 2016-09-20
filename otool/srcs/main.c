@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 13:07:20 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:17:21 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:56:20 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int				main(int argc, char **argv)
 	{
 		init(&env);
 		if ((load_file(argv[i], &env)) == OTOOL_NOK)
-			return (1);
-		else
+		{
+		}
+		else if (env.text != NULL)
+		{
+			ft_putstr(env.filename);
+			ft_putendl(":");
 			print_text(&env);
+		}
 		++i;
 	}
 }

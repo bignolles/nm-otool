@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 16:16:03 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:27:40 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:11:59 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static int				fetch_section(t_env *env, void *data,
 		{
 			env->text = env->file + sec->offset;
 			env->addr64 = sec->addr;
+			env->addr32 = 0;
 			env->size = sec->size;
+			env->print64 = 1;
 			return (OTOOL_OK);
 		}
 		++j;

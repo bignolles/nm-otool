@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 15:49:32 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:16:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:56:06 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int			load_file(char *filename, t_env *env)
 						PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 			return (OTOOL_NOK);
 		close(fd);
+		env->start = env->file;
 		env->filename = filename;
 		env->filesize = buff.st_size;
 		return ((get_text_section(env)));

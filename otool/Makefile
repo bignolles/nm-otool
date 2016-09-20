@@ -8,10 +8,13 @@ LIBFT_INCLUDES =		$(LIBFT_DIR)/includes/
 LIBFT =					$(LIBFT_DIR)/libft.a
 CFLAGS =				-Wall -Wextra -Werror -I$(INCLUDES_DIR) -I$(LIBFT_INCLUDES) -c -g -o
 LDFLAGS =				-L$(LIBFT_DIR) -lft -o
-SRCS =					get_handler.c\
+SRCS =					fat_reverse.c\
+						get_handler.c\
 						get_text_section.c\
-						handle_64.c\
 						handle_32.c\
+						handle_64.c\
+						handle_ar.c\
+						handle_fat.c\
 						load_file.c\
 						main.c\
 						print_text.c

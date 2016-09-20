@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 16:16:03 by marene            #+#    #+#             */
-/*   Updated: 2016/09/02 14:24:29 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:12:08 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int				fetch_section(t_env *env, void *data,
 				&& ft_strequ(sec->sectname, O_SECTEXT))
 		{
 			env->text = env->file + sec->offset;
-			env->addr64 = sec->addr;
+			env->addr32 = sec->addr;
+			env->addr64 = 0;
 			env->size = sec->size;
 			return (OTOOL_OK);
 		}
@@ -53,6 +54,7 @@ int						handle_32(t_env *env)
 		lc = (struct load_command*)data;
 		if (lc->cmd == LC_SEGMENT)
 		{
+			env->print64 = 0;
 			if (fetch_section(env, data,
 						(struct segment_command*)lc) == OTOOL_OK)
 				return (OTOOL_OK);
