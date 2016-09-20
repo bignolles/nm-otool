@@ -6,18 +6,20 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 14:38:33 by marene            #+#    #+#             */
-/*   Updated: 2016/09/16 15:06:32 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 10:12:01 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+const int		g_foo;
 
 static void		print_symtype(t_symbol *symbol, t_section **sections)
 {
 	char		type;
 
 	if (symbol->type == N_UNDF)
-		type = 'u';
+		type = (symbol->n_value == 0) ? 'u' : 'c';
 	else if (symbol->type == N_ABS)
 		type = 'a';
 	else if (symbol->type == N_SECT)
@@ -30,12 +32,6 @@ static void		print_symtype(t_symbol *symbol, t_section **sections)
 		type = '-';
 	ft_putchar(type);
 	ft_putchar(' ');
-	ft_putstr("{ ");
-	if (symbol->sectnb < 0)
-		ft_putstr("no_sect");
-	else
-		ft_putstr(sections[symbol->sectnb]->sectname);
-	ft_putstr("} ");
 }
 
 static void		print_addr(t_symbol *sym)
@@ -43,7 +39,7 @@ static void		print_addr(t_symbol *sym)
 	static char		blank64[] = "                ";
 	static char		blank32[] = "        ";
 
-	if (sym->type == N_UNDF)
+	if (sym->type == N_UNDF && sym->n_value == 0)
 	{
 		if (sym->byte == NM_SYM64)
 			ft_putstr(blank64);

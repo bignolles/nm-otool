@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/06 12:37:03 by marene            #+#    #+#             */
-/*   Updated: 2016/09/07 16:22:58 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 11:44:26 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ struct fat_arch			reverse_fat_arch(struct fat_arch *f)
 	ret.align = ft_swap32(f->align);
 	return (ret);
 }
+/*
 
 struct mach_header		reverse_mach_header(struct mach_header *h)
 {
@@ -127,3 +128,4 @@ struct section			reverse_section(struct section *s)
 	ret.reserved2 = ft_swap32(s->reserved2);
 	return (ret);
 }
+*/

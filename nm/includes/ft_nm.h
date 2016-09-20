@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 15:26:22 by marene            #+#    #+#             */
-/*   Updated: 2016/09/15 14:30:21 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 11:44:49 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ typedef struct			s_env
 	t_file_handler	handler;
 }						t_env;
 
-t_env					g_foo;
-
 int						handle_32(t_file *file);
 int						handle_64(t_file *file);
 int						handle_fat(t_file *file);
@@ -46,12 +44,6 @@ int						get_magic(t_env *env);
 void					print_symbols(t_symbol **symbols, t_section **sections);
 struct fat_header		reverse_fat_header(struct fat_header *fat_h);
 struct fat_arch			reverse_fat_arch(struct fat_arch *f);
-struct mach_header		reverse_mach_header(struct mach_header *h);
-struct load_command		reverse_load_command(struct load_command *l);
-struct symtab_command	reverse_symtab_command(struct symtab_command *s);
-struct segment_command	reverse_segment_command(struct segment_command *s);
-struct nlist			reverse_nlist(struct nlist *n);
-struct section			reverse_section(struct section *s);
 
 int						symsort_ascii(t_symbol *s1, t_symbol *s2);
 int						symsort_ascii_addr(t_symbol *s1, t_symbol *s2);
