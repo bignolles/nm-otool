@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/20 22:33:09 by marene            #+#    #+#             */
-/*   Updated: 2016/08/25 16:05:21 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:39:50 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,9 @@ void			ft_putchar_hex(unsigned char *c);
 void			ft_putint_hex(unsigned int *c);
 void			ft_putstr_dump(char *str, int len);
 int				ft_abs(int nb);
+int16_t			ft_swap16(int16_t n);
+int32_t			ft_swap32(int32_t n);
+int64_t			ft_swap64(int64_t n);
 
 /*
 ** |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|

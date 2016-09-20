@@ -6,7 +6,7 @@
 #    By: marene <marene@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 10:20:28 by marene            #+#    #+#              #
-#    Updated: 2016/05/17 14:26:04 by marene           ###   ########.fr        #
+#    Updated: 2016/09/12 16:48:03 by marene           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ CC =		gcc
 AR =		ar
 NAME =		libft.a
 CFLAGS =	-Wall -Wextra -Werror -I ./includes -c -g -o
-LFLAGS =	-q
 SRC =		ft_atoi.c				ft_bzero.c\
 			ft_isalnum.c			ft_isalpha.c\
 			ft_isascii.c			ft_isdigit.c\
@@ -48,6 +47,7 @@ SRC =		ft_atoi.c				ft_bzero.c\
 			ft_putaddr.c			ft_putchar_hex.c\
 			ft_putchar_fd.c			ft_abs.c\
 			ft_putnbr_recursive.c	ft_putstr_dump.c\
+			ft_swap.c
 
 OBJ = $(SRC:.c=.o)
 SRC_DIR = ./srcs/
@@ -68,7 +68,7 @@ test_build: $(NAME)
 $(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
 	@echo "\033[A\033[2K"
 	@echo "\033[A[LIBFT: COMPILING: \033[0;33mDONE\033[0;32m]\033[0m"
-	@$(AR) $(LFLAGS) $@ $^
+	@$(AR) -q $@ $^
 	@echo "\033[A\033[2K"
 	@echo "\033[A\033[0;32m[LIBFT: LINKING: \033[0;33mDONE\033[0;32m]\033[0m"
 
