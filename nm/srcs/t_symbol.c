@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:15:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/16 13:22:03 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:36:32 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_symbol		*t_symbol_construct_64(struct nlist_64 symtable, void *strtable)
 	return (ret);
 }
 
-void		t_symbol_destruct(t_symbol ***symbols)
+void			t_symbol_destruct(t_symbol ***symbols)
 {
 	int			i;
 

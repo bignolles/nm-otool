@@ -6,33 +6,11 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/16 13:02:18 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:35:59 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-
-/*
-static int		check_duplicate(t_symbol **symbols, t_symbol *newsym)
-{
-	int		i;
-	i = 0;
-	while (symbols[i])
-	{
-		if (ft_strequ(symbols[i]->name, newsym->name)
-				&& symbols[i]->stab == newsym->stab
-				&& symbols[i]->pext == newsym->pext
-				&& symbols[i]->ext == newsym->ext
-				&& symbols[i]->type == newsym->type
-				&& symbols[i]->sectnb == newsym->sectnb
-				&& symbols[i]->n_value == newsym->n_value
-				&& symbols[i]->byte == newsym->byte)
-			return (NM_NOK);
-		++i;
-	}
-	return (NM_OK);
-}
-*/
 
 static int		add_symbols(t_file *file, uint32_t nsyms,
 		struct nlist_64 *symtable, void *strtable)
@@ -43,27 +21,18 @@ static int		add_symbols(t_file *file, uint32_t nsyms,
 	t_symbol				*newsym;
 
 	offset = 0;
-	//if (file->symbols == NULL)
-		file->symbols = malloc(sizeof(t_symbol*) * (nsyms + 1));
-//	else
-//		file->symbols = t_symbol_array_realloc(file->symbols, nsyms, &offset);
-	if (file->symbols != NULL)
+	file->symbols = malloc(sizeof(t_symbol*) * (nsyms + 1));
+	if (file->symbols != NULL && !(i = 0))
 	{
-		i = 0;
 		j = 0;
-//		t_symbol_print_reinit(file->symbols);
 		file->symbol_nb = nsyms;
 		while (i < nsyms)
 		{
 			if (symtable[i].n_un.n_strx > 0)
 			{
 				newsym = t_symbol_construct_64(symtable[i], strtable);
-			//	if (check_duplicate(file->symbols, newsym) == NM_OK)
 				if (newsym != NULL)
-				{
-					file->symbols[j + offset] = newsym;
-					++j;
-				}
+					file->symbols[++j + offset] = newsym;
 			}
 			++i;
 		}

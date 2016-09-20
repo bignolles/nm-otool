@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 10:38:21 by marene            #+#    #+#             */
-/*   Updated: 2016/09/14 14:14:57 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:35:21 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ t_file				*t_file_create(char *file_name, int fd)
 	t_file			*ret;
 	struct stat		buf;
 
-	ret = NULL;
-	if (fd >= 0 && fstat(fd, &buf) == 0)
+	if (!(ret = NULL) && fd >= 0 && fstat(fd, &buf) == 0)
 	{
 		if ((ret = malloc(sizeof(t_file))) != NULL)
 		{

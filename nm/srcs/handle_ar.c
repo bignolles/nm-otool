@@ -6,14 +6,15 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 11:50:32 by marene            #+#    #+#             */
-/*   Updated: 2016/09/16 14:45:37 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:30:07 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
 /*
-** file->content starts at the 2nd ar_hdr described in the archive (Cf srcs/get_magic.c)
+** file->content starts at the 2nd ar_hdr described in the archive
+** (Cf srcs/get_magic.c)
 */
 
 static int				get_arheader_size(char *ar_name)
@@ -56,7 +57,8 @@ int						handle_ar(t_file *file)
 	struct ar_hdr			*ar_h;
 
 	ar_h = (struct ar_hdr*)(file->content);
-	while (file->content + ft_atoi(ar_h->ar_size) + sizeof(*ar_h) <= file->start + file->size)
+	while (file->content + ft_atoi(ar_h->ar_size) + sizeof(*ar_h)
+			<= file->start + file->size)
 	{
 		if (file->symbols)
 			t_symbol_destruct(&(file->symbols));

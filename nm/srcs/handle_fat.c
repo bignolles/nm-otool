@@ -6,17 +6,16 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 15:50:36 by marene            #+#    #+#             */
-/*   Updated: 2016/09/16 14:45:23 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:30:30 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-# include <stdio.h>
 
 #include "ft_nm.h"
 
 static int		call_handle(t_file *file)
 {
 	unsigned int		magic_nb;
-	void				*data = file->content;
+	void				*data;
 	struct ar_hdr		ar_h;
 
 	magic_nb = *(unsigned int*)(file->content);
@@ -53,7 +52,6 @@ int				handle_fat(t_file *file)
 		{
 			file->content += fat_a.offset;
 			return (call_handle(file));
-//			return ((fat_a.cputype == CPU_TYPE_X86) ? handle_32(file) : handle_64(file));
 		}
 		data += sizeof(struct fat_arch);
 		++i;

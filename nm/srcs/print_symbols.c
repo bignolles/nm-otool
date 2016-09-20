@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 14:38:33 by marene            #+#    #+#             */
-/*   Updated: 2016/09/20 10:12:01 by marene           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:31:40 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void		print_addr(t_symbol *sym)
 void			print_symbols(t_symbol **symbols, t_section **sections)
 {
 	int		i;
+
 	i = 0;
 	while (symbols && symbols[i] != NULL)
 	{
